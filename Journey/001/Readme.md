@@ -22,8 +22,7 @@ Note: You need to create resource group(s) and storage account before starting t
 
 - Process Diagram
 
-![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/d8be2b67-169e-4854-a3d6-a845a423c21f)
-
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/78113878-ff94-485a-8d70-25731f43cb3b)
 - ✍️  Add, Remove and Update Tags for Resources in Azure
 
 ## Cloud Research
@@ -35,15 +34,14 @@ This peculiarity required a more manual approach to tagging, which could become 
 ### Step 1 — List the resource groups in Powershell:
 az group list
 
-(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/68ae38ff-25dc-43f8-bbbf-ad10cdff02df)
-
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/927ffe9e-9f0f-4ae9-a61f-a549bfb2c519)
 ### Step 2 — Copy the group name.
 
 
 ### Step 3 — Update the resource group tags:
 `az group update --resource-group "<RESOURCE_GROUP_NAME>" --tags "Environment=Production" "Dept=IT" "CreatedBy=<YourName>"`
 
-(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/e8ea2d1f-97f3-4122-a42e-38af3d9b4c16)
 
 ### Remove Tags for VM and Mark for Deletion
 
