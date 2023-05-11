@@ -50,38 +50,34 @@ az group list
 `az vm list --query '[].{name:name, resourceGroup:resourceGroup, tags:tags}' -o json`
 
 
+
+
 ### Step 5 — Remove the existing tags from the VM:
 `az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --remove tags.defaultExperience`
 
-(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
 
 ### Step 6 — Mark the VM for deletion:
 `az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --set tags.MarkForDeletion=Yes`
 
-(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
 
 
 ### Step 7 — Remove the existing tags from the VM:
 `az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --remove tags.defaultExperience`
 
-(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
 
 ### Step 8 — Mark VM For Deletion:
 `az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --set tags.MarkForDeletion=Yes`
-(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/c5fff294-3280-41af-9c22-683ce09acc13)
 
 ## Change Tags for the Virtual Network
 
 ## Step 9 - list the virtual networks:
 az network vnet list --query '[].{name:name, resourceGroup:resourceGroup, tags:tags}' -o json
-(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/c8f9a174-a05f-4adc-9334-aebf407bb276)
-
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/46862105-ec71-48e5-a1df-52810d4839c0)
 ## Step 10 - Overwrite the existing tags:
 `az resource tag --tags "Dept=IT" "Environment=Production" "CreatedBy=<YourName>" --resource-group "<RESOURCE_GROUP_NAME>" -n "vnet1" --resource-type "Microsoft.Network/virtualNetworks"`
 This command has now changed the department tag from 'MyDepartment' to 'IT'
 
-![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/1ded544d-fa15-4910-9732-c2c1a91e8e8a)
-
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/bdaf20bf-fee8-4645-99de-a316baa2920e)
 
 ## ☁️ Cloud Outcome
 
