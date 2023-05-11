@@ -1,49 +1,98 @@
-**Add a cover photo like:**
-![placeholder image](https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.shareicon.net%2Fdownload%2F2015%2F09%2F05%2F96315_tag_512x512.png&tbnid=-C-VvM9R2jd59M&vet=12ahUKEwjApvGE--z-AhWMpycCHdX0C6MQMygJegUIARDPAQ..i&imgrefurl=https%3A%2F%2Fwww.shareicon.net%2Ftag%2Ftag%3Fcl%3Ddodgerblue%26cat%3Dmixed&docid=JTJMr97eO_yNvM&w=512&h=512&itg=1&q=azure%20tag%20icon&ved=2ahUKEwjApvGE--z-AhWMpycCHdX0C6MQMygJegUIARDPAQ)
 
-# New post title here
-
+# Tagging Resources in Azure
+![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/eeca52e0-0134-4dc8-916b-248f1eafbd4a)
 ## Introduction
 
-✍️ (Why) Explain in one or two sentences why you choose to do this project or cloud topic for your day's study.
+✍️ In the scenario for this hands-on lab, the finance department has reached out to you. They are requesting additional taxonomy information on a recent Azure bill, including who created the resources, which department budget should be used for the resources, and if the resources are necessary for running business critical systems.
+
+If there are any non-essential business systems, they ask that you signify that in some way.
 
 ## Prerequisite
 
-✍️ (What) Explain in one or two sentences the base knowledge a reader would need before describing the the details of the cloud service or topic.
+✍️ In the Azure Portal, click the Cloud Shell icon (>_ ) in the upper right.
+Select PowerShell.
+Click Show advanced settings.
+Use the same region as the lab provided storage account and the existing resource group. Create a new Storage account (use a globally unique name).
+For File share, select Create new and give it a name of "fileshare".
+Click Create storage.
+Note: You need to create resource group(s) and storage account before starting this lab.
 
 ## Use Case
 
-- 🖼️ (Show-Me) Create an graphic or diagram that illustrate the use-case of how this knowledge could be applied to real-world project
-- ✍️ (Show-Me) Explain in one or two sentences the use case
+- Process Diagram
+
+![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/d8be2b67-169e-4854-a3d6-a845a423c21f)
+
+- ✍️  Add, Remove and Update Tags for Resources in Azure
 
 ## Cloud Research
 
-- ✍️ Document your trial and errors. Share what you tried to learn and understand about the cloud topic or while completing micro-project.
-- 🖼️ Show as many screenshot as possible so others can experience in your cloud research.
+During my exploration of Azure tags, I grappled with the concept that tags don't inherently support inheritance. This presented a difficulty     when trying to apply uniform taxonomy across nested resources, as tags applied at the resource group level don't automatically propagate to the resources within.
 
-## Try yourself
+This peculiarity required a more manual approach to tagging, which could become labor-intensive in larger environments. Going forward, I intend to research more on automated tagging solutions to overcome this challenge and improve the efficiency of resource management in Azure.
 
-✍️ Add a mini tutorial to encourage the reader to get started learning something new about the cloud.
+### Step 1 — List the resource groups in Powershell:
+az group list
 
-### Step 1 — Summary of Step
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/68ae38ff-25dc-43f8-bbbf-ad10cdff02df)
 
-![Screenshot](https://via.placeholder.com/500x300)
+### Step 2 — Copy the group name.
 
-### Step 1 — Summary of Step
 
-![Screenshot](https://via.placeholder.com/500x300)
+### Step 3 — Update the resource group tags:
+`az group update --resource-group "<RESOURCE_GROUP_NAME>" --tags "Environment=Production" "Dept=IT" "CreatedBy=<YourName>"`
 
-### Step 3 — Summary of Step
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
 
-![Screenshot](https://via.placeholder.com/500x300)
+### Remove Tags for VM and Mark for Deletion
+
+### Step 4 — In the Cloud Shell, list the existing virtual machines:
+
+`az vm list --query '[].{name:name, resourceGroup:resourceGroup, tags:tags}' -o json`
+
+
+### Step 5 — Remove the existing tags from the VM:
+`az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --remove tags.defaultExperience`
+
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
+
+### Step 6 — Mark the VM for deletion:
+`az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --set tags.MarkForDeletion=Yes`
+
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
+
+
+### Step 7 — Remove the existing tags from the VM:
+`az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --remove tags.defaultExperience`
+
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/b8e973f5-e3fd-47ea-8c74-b0f397caa176))
+
+### Step 8 — Mark VM For Deletion:
+`az vm update -g "<RESOURCE_GROUP_NAME>" -n webvm1 --set tags.MarkForDeletion=Yes`
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/c5fff294-3280-41af-9c22-683ce09acc13)
+
+## Change Tags for the Virtual Network
+
+## Step 9 - list the virtual networks:
+az network vnet list --query '[].{name:name, resourceGroup:resourceGroup, tags:tags}' -o json
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/c8f9a174-a05f-4adc-9334-aebf407bb276)
+
+## Step 10 - Overwrite the existing tags:
+`az resource tag --tags "Dept=IT" "Environment=Production" "CreatedBy=<YourName>" --resource-group "<RESOURCE_GROUP_NAME>" -n "vnet1" --resource-type "Microsoft.Network/virtualNetworks"`
+This command has now changed the department tag from 'MyDepartment' to 'IT'
+
+![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/1ded544d-fa15-4910-9732-c2c1a91e8e8a)
+
 
 ## ☁️ Cloud Outcome
 
-✍️ (Result) Describe your personal outcome, and lessons learned.
+✍️ This hands-on lab on Azure resource tagging has significantly boosted my understanding of effective resource management. I learned the importance of taxonomy in identifying resource origins, responsibilities, and criticality.
+
+Practically applying Azure Cloud Shell commands to add, update, and remove tags from resources like a resource group, VM, and virtual network underscored their utility in real-world scenarios. This experience has refined my skills in managing and streamlining Azure resources, an asset that will undoubtedly serve me well in future endeavors..
 
 ## Next Steps
 
-✍️ Describe what you think you think you want to do next.
+✍️ Moving forward, I plan to delve into automated tagging strategies using Azure Policies or Functions. I'm also interested in exploring cost management in Azure, particularly how tagging can assist in cost tracking. Ultimately, I aim to apply these skills in a practical project.
 
 ## Social Proof
 
