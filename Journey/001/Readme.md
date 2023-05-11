@@ -1,6 +1,7 @@
 
 # Tagging Resources in Azure
-![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/eeca52e0-0134-4dc8-916b-248f1eafbd4a)
+(![image](https://github.com/RedwaanMax/Azure-Administrator/assets/130489929/3724c07f-e31a-4c94-bf49-959762284bfe)
+
 ## Introduction
 
 ✍️ In the scenario for this hands-on lab, the finance department has reached out to you. They are requesting additional taxonomy information on a recent Azure bill, including who created the resources, which department budget should be used for the resources, and if the resources are necessary for running business critical systems.
