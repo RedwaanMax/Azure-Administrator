@@ -1,5 +1,5 @@
 **Add a cover photo like:**
-![placeholder image](https://via.placeholder.com/1200x600)
+![placeholder image](https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.shareicon.net%2Fdownload%2F2015%2F09%2F05%2F96315_tag_512x512.png&tbnid=-C-VvM9R2jd59M&vet=12ahUKEwjApvGE--z-AhWMpycCHdX0C6MQMygJegUIARDPAQ..i&imgrefurl=https%3A%2F%2Fwww.shareicon.net%2Ftag%2Ftag%3Fcl%3Ddodgerblue%26cat%3Dmixed&docid=JTJMr97eO_yNvM&w=512&h=512&itg=1&q=azure%20tag%20icon&ved=2ahUKEwjApvGE--z-AhWMpycCHdX0C6MQMygJegUIARDPAQ)
 
 # New post title here
 
